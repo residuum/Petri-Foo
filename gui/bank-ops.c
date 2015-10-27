@@ -264,6 +264,7 @@ static int full_save_as(GtkWidget* parent_window, gboolean not_export)
                                                             NULL, NULL));
                 break;
             }
+            free(folder);
         }
         else
             break;

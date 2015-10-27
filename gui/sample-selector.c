@@ -641,7 +641,6 @@ int sample_selector_show(int id, GtkWidget* parent_window,
 
 again:
 
-    assert(rawbox);
     switch(gtk_dialog_run(GTK_DIALOG(dialog)))
     {
     case GTK_RESPONSE_ACCEPT:
@@ -654,9 +653,12 @@ again:
         goto again;
 
     case RESPONSE_PREVIEW:
-        cb_preview(rawbox);
-        goto again;
-
+        if (rawbox)
+        {
+            cb_preview(rawbox);
+            goto again;
+		}
+        break;
     case GTK_RESPONSE_CANCEL:
         cb_cancel();
     default:
